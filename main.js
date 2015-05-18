@@ -142,7 +142,7 @@ function filterLongWords(words, i){
 //         return frequencyVariables;
 //     };
 
-
+// using [] just incase the variable is a number, has spaces, and if you want to treat the object as a string.
 function charFreq(string){
     var frequencyVariables = {};
     string.split('').forEach(function(character){

@@ -20,19 +20,20 @@ function max(num1, num2){
 function maxOfThree(num1, num2, num3){
 
     if (num1 > num2 && num1 > num3) {
-        return num1 + " is largest";
+        return num1 + " is largest of the three numbers";
     }
     else if (num2 > num1 && num2 > num3) {
-        return num2 + " is largest";
+        return num2 + " is largest of the three numbers";
     }
     else if (num3 > num1 && num3 > num2) {
-        return num3  + " is largest";
+        return num3  + " is largest of the three numbers";
     }
 };
 
 // ---------------------
 // Write a function that takes a character (i.e. a string of length 1) and returns true if it is a vowel, false otherwise.
 // ---------------------
+// || = is used to signify "or"
 
 function isVowel(char) {
    if (char === "a" || char === "e" || char === "i" || char === "o" || char === "u") {
@@ -41,12 +42,31 @@ function isVowel(char) {
        return false;
 };
 
+// Justin's variation says that any character that does not equal (a consonant) to "a" where the index number is 0 in that string so on until "u", the
+// the returned answer will be false.
+// function isVowel(char){
+//     return ("aeiou".indexOf(char)) >= 0;
+//     }
+
 // ---------------------
 // Write a function translate() that will translate a text into "rÃ¶varsprÃ¥ket". That is, double every consonant and place an occurrence of "o" in between. For example, translate("this is fun") should return the string "tothohisos isos fofunon".
 // ---------------------
 
+var myArray = [];
+
 function rovarspraket(phrase){
-    //...
+    var x = phrase.split('');
+    console.log(x);
+
+    x.forEach(function(letter) {
+        if ("aeiou ".indexOf(letter) < 0) {
+            myArray.push(letter + 'o' + letter);
+        }
+        else if ("aeiou ".indexOf(letter) >= 0) {
+            myArray.push(letter);
+        }
+    })
+    console.log(myArray.join(''));
 }
 
 // ---------------------
@@ -71,30 +91,79 @@ function multiply(numArray2){
 // Define a function reverse() that computes the reversal of a string. For example, reverse("jag testar") should return the string "ratset gaj".
 // ---------------------
 
-function reverse(){
-    //...
+function reverse(y){
+    return y.split('').reverse().join('');
 }
 
 // ---------------------
 // Write a function findLongestWord() that takes an array of words and returns the length of the longest one.
 // ---------------------
-
+// sort function only sorts values as string in alphabetical and ascending order
 function findLongestWord(words){
-    //...
-}
+    var longest = words.reduce(function(a,b) {
+        if (a.length > b.length)
+            return a;
+        else
+            return b;
+    })
+   return longest.length;
+};
 
 // ---------------------
 // Write a function filterLongWords() that takes an array of words and an integer i and returns the array of words that are longer than i.
 // ---------------------
 
 function filterLongWords(words, i){
-    //...
+    var compareArray = [];
+    var compare = words.forEach(function(word) {
+        if (word.length > i) {
+            compareArray.push(word);}
+    })
+    return compareArray;
 }
 
 // ---------------------
 // Write a function charFreq() that takes a string and builds a frequency listing of the characters contained in it. Represent the frequency listing as a Javascript object. Try it with something like charFreq("abbabcbdbabdbdbabababcbcbab").
 // ---------------------
+// {} = new Object();
+// charAt() method returns the character at the specified index in a string.
+// when you set the frequencyVariables[character] = 1, that
+
+// From Google ---> Disregard!
+// function charFreq(string){
+//     var frequencyVariables = new Object();
+//         for (var i=0; i < string.length; i++) {
+//                 var character = string.charAt(i);
+//               if (frequencyVariables[character]) {
+//                 frequencyVariables[character]++;}
+
+//              else {frequencyVariables[character] = 1}
+//              }
+//         return frequencyVariables;
+//     };
+
 
 function charFreq(string){
-    //...
+    var frequencyVariables = {};
+    string.split('').forEach(function(character){
+        if (frequencyVariables[character]) {
+            frequencyVariables[character]++;
+        } else{
+            frequencyVariables[character] = 1;
+        }
+    });
+    return frequencyVariables;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
